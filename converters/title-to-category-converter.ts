@@ -4,6 +4,8 @@ export default function titleToCategoryConverter(title: string) {
     switch (title) {
         case "На все покупки":
             return CashbackCategory.ALL;
+        case "Супермаркеты":
+            return CashbackCategory.SUPERMARKETS;
         case "Фастфуд":
             return CashbackCategory.FASTFOOD;
         case "Кафе и рестораны":
@@ -20,6 +22,10 @@ export default function titleToCategoryConverter(title: string) {
             return CashbackCategory.BEAUTY;
         case "Хобби и развлечения":
             return CashbackCategory.ENTERTAINMENT;
+        case "Книги":
+            return CashbackCategory.BOOKS;
+        case "Одежда и обувь":
+            return CashbackCategory.CLOTHES;
         default:
             return CashbackCategory.NO_CATEGORY;
     }

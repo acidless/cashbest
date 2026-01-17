@@ -1,11 +1,14 @@
 import {chromium} from "playwright";
-import SberProvider from "./providers/sber-provider";
+import YandexProvider from "./providers/yandex-provider";
 
 (async () => {
     const browser = await chromium.launch({ headless: false });
-    const context = await browser.newContext();
+    const context = await chromium.launchPersistentContext(
+        './profile',
+        { headless: false }
+    );
 
-    const providers = [new SberProvider()];
+    const providers = [new YandexProvider()];
 
     const cashbackEntities = [];
     for(const provider of providers) {

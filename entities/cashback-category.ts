@@ -1,7 +1,7 @@
 enum CashbackCategory {
     NO_CATEGORY,
     ALL,
-    GROCERIES,
+    SUPERMARKETS,
     FASTFOOD,
     CAFES_AND_RESTAURANTS,
     FLOWERS,
@@ -9,7 +9,9 @@ enum CashbackCategory {
     TRANSPORT,
     MEDICINE,
     BEAUTY,
-    ENTERTAINMENT
+    ENTERTAINMENT,
+    BOOKS,
+    CLOTHES
 }
 
 export default CashbackCategory;
