@@ -2,6 +2,8 @@ import CashbackCategory from "../entities/cashback-category";
 
 export default function titleToCategoryConverter(title: string) {
     switch (title) {
+        case "На все покупки":
+            return CashbackCategory.ALL;
         case "Фастфуд":
             return CashbackCategory.FASTFOOD;
         case "Кафе и рестораны":
@@ -12,6 +14,12 @@ export default function titleToCategoryConverter(title: string) {
             return CashbackCategory.ACTIVE_RECREATION;
         case "Транспорт":
             return CashbackCategory.TRANSPORT;
+        case "Медицинские услуги":
+            return CashbackCategory.MEDICINE;
+        case "Парфюмерия и косметика":
+            return CashbackCategory.BEAUTY;
+        case "Хобби и развлечения":
+            return CashbackCategory.ENTERTAINMENT;
         default:
             return CashbackCategory.NO_CATEGORY;
     }
