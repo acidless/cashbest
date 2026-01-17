@@ -3,10 +3,10 @@ import {BrowserContext} from "playwright";
 import {AlfaCashbackResponse, AlfaSuperCashbackResponse} from "../types/alfa";
 import CashbackEntity from "../entities/cashback-entity";
 import alfaCashbackConverter from "../converters/alfa-cashback-converter";
-import alfaSuperCashbackConverter from "../converters/alfa-super-cashbacck-converter";
+import alfaSuperCashbackConverter from "../converters/alfa-super-cashback-converter";
 
 class AlfaProvider extends Provider {
-    public getName(): string {
+    public static getName(): string {
         return "Альфабанк";
     }
 

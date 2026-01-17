@@ -5,7 +5,7 @@ import {SberCashbackResponse} from "../types/sber";
 import sberCashbackConverter from "../converters/sber-cashback-converter";
 
 class SberProvider extends Provider {
-    public getName(): string {
+    public static getName(): string {
         return "Сбер";
     }
 

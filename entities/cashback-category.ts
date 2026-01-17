@@ -11,7 +11,9 @@ enum CashbackCategory {
     BEAUTY,
     ENTERTAINMENT,
     BOOKS,
-    CLOTHES
+    CLOTHES,
+    TAXI,
+    ART,
 }
 
 export default CashbackCategory;

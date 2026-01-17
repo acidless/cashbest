@@ -17,6 +17,7 @@ export default function titleToCategoryConverter(title: string) {
         case "Транспорт":
             return CashbackCategory.TRANSPORT;
         case "Медицинские услуги":
+        case "Аптеки":
             return CashbackCategory.MEDICINE;
         case "Парфюмерия и косметика":
             return CashbackCategory.BEAUTY;
@@ -26,6 +27,10 @@ export default function titleToCategoryConverter(title: string) {
             return CashbackCategory.BOOKS;
         case "Одежда и обувь":
             return CashbackCategory.CLOTHES;
+        case "Такси":
+            return CashbackCategory.TAXI;
+        case "Искусство":
+            return CashbackCategory.ART;
         default:
             return CashbackCategory.NO_CATEGORY;
     }

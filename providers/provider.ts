@@ -2,7 +2,7 @@ import CashbackEntity from "../entities/cashback-entity";
 import {BrowserContext} from "playwright";
 
 abstract class Provider {
-    public getName() {
+    public static getName() {
         return "PROVIDER";
     }
 

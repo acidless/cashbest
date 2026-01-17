@@ -3,10 +3,9 @@ import {BrowserContext} from "playwright";
 import CashbackEntity from "../entities/cashback-entity";
 import {YandexCashbackResponse} from "../types/yandex";
 import yandexCashbackConverter from "../converters/yandex-cashback-converter";
-import {expect} from "playwright/test";
 
 class YandexProvider extends Provider {
-    public getName(): string {
+    public static getName(): string {
         return "Яндекс";
     }
 
