@@ -1,9 +1,9 @@
 import {chromium} from "playwright";
 import OzonProvider from "./providers/ozon-provider";
 import YandexProvider from "./providers/yandex-provider";
-import cashbackGrouping from "./converters/cashback-grouping";
 import AlfaProvider from "./providers/alfa-provider";
 import SberProvider from "./providers/sber-provider";
+import cashbackUpload from "./cashback-upload";
 
 (async () => {
     const browser = await chromium.launch({ headless: false });
@@ -23,9 +23,7 @@ import SberProvider from "./providers/sber-provider";
         cashbackEntities.push(...await provider.getCashbackEntities(context));
     }
 
-    const groupedCashback = cashbackGrouping(cashbackEntities)
-
-    console.log(groupedCashback);
+    await cashbackUpload(cashbackEntities);
 
     await browser.close();
 })();

@@ -32,9 +32,10 @@ class YandexProvider extends Provider {
 
         await page.close();
 
-        return data.data.globalSelectorCalculated.groups.flatMap(group => {
+        const groups = data.data.globalSelectorCalculated.groups;
+        return [yandexCashbackConverter(groups[0].categories.at(-1)!), ...groups.slice(1).flatMap(group => {
             return group.categories.map(c => yandexCashbackConverter(c));
-        });
+        })];
     }
 }
 
