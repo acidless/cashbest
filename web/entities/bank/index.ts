@@ -1,0 +1,1 @@
+export {banksToColor} from "./model/banksToColor";

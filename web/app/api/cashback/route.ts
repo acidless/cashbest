@@ -57,3 +57,23 @@ export async function POST(req: Request) {
         );
     }
 }
+
+export async function GET() {
+    const rows = await sql`
+        SELECT
+            category,
+            json_agg(
+                    json_build_object(
+                            'category', category,
+                            'bank', bank,
+                            'amount', amount
+                    )
+                        ORDER BY amount DESC
+            ) AS cashback
+        FROM cashback
+        GROUP BY category
+        ORDER BY MAX(amount) DESC
+    `;
+
+    return NextResponse.json(rows);
+}

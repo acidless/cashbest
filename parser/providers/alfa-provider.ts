@@ -7,7 +7,7 @@ import alfaSuperCashbackConverter from "../converters/alfa-super-cashback-conver
 
 class AlfaProvider extends Provider {
     public static getName(): string {
-        return "Альфабанк";
+        return "Альфа-Банк";
     }
 
     public async getCashbackEntities(browserContext: BrowserContext): Promise<CashbackEntity[]> {
