@@ -26,8 +26,8 @@ const CashbackGroups = ({cashbackData}: PropsType) => {
     }, [favoriteCategories]);
 
     return <FavoriteContext.Provider value={[favoriteCategories, setFavoriteCategories]}>
-        <CashbackGroup title="Любимые категории кэшбэка" categories={likedCashback}/>
-        <CashbackGroup title="Остальные категории кэшбэка" categories={otherCashback}/>
+        {likedCashback.length ? <CashbackGroup title="Любимые категории кэшбэка" categories={likedCashback}/> : <></>}
+        {otherCashback.length ? <CashbackGroup title="Остальные категории кэшбэка" categories={otherCashback}/> : <></>}
     </FavoriteContext.Provider>
 }
 

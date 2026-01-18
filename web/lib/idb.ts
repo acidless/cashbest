@@ -11,9 +11,8 @@ export function getDb() {
         dbPromise = openDB("cashback-db", 1, {
             upgrade(db) {
                 const store = db.createObjectStore("favorites", {
-                    keyPath: ["bank", "category"]
+                    keyPath: ["category"]
                 });
-                store.createIndex("by_bank", "bank");
             }
         });
     }
