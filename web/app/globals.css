@@ -16,3 +16,7 @@ body {
 .text-accent {
     color: var(--accent);
 }
+
+.bg-accent {
+    background: var(--accent);
+}

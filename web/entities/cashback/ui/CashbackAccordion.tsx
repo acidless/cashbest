@@ -2,8 +2,11 @@
 
 import {CashbackCategory} from "@/lib/types";
 import {CashbackCard} from "@/entities/cashback";
-import {useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {AnimatePresence, motion} from "framer-motion";
+import SwipeForFavorite from "@/shared/SwipeForFavorite";
+import {addFavorite, removeFavorite} from "@/entities/cashback/model/cashback-category";
+import {FavoriteContext} from "@/shared/FavoriteContext";
 
 type PropsType = {
     cashbackCategory: CashbackCategory;
@@ -11,9 +14,34 @@ type PropsType = {
 
 export const CashbackAccordion = ({cashbackCategory}: PropsType) => {
     const [isOpened, setOpened] = useState(false);
+    const [favoriteCashback, setFavoriteCashback] = useContext(FavoriteContext);
+    const [isLiked, setLiked] = useState(false);
 
-    return <article onClick={() => setOpened(!isOpened)}>
-        <CashbackCard cashback={cashbackCategory.cashback[0]} lg/>
+    useEffect(() => {
+        setLiked(favoriteCashback.includes(cashbackCategory.category));
+    }, [favoriteCashback]);
+
+    async function onLike() {
+        if(isLiked) {
+            await removeFavorite(cashbackCategory.category);
+            setFavoriteCashback(favoriteCashback.filter(c => c !== cashbackCategory.category));
+        } else {
+            await addFavorite(cashbackCategory.category);
+            setFavoriteCashback([...favoriteCashback, cashbackCategory.category]);
+        }
+    }
+
+    return <article>
+        <div className="relative">
+            <SwipeForFavorite onLike={onLike} liked={isLiked}>
+                <motion.article onClick={() => setOpened(!isOpened)}
+                                exit={{ opacity: 0, height: 0, paddingTop: 0, paddingBottom: 0 }}
+                                transition={{ duration: 0.3 }}
+                                layout>
+                    <CashbackCard cashback={cashbackCategory.cashback[0]} lg/>
+                </motion.article>
+            </SwipeForFavorite>
+        </div>
         <AnimatePresence initial={false}>
             {isOpened && (
                 <motion.div
