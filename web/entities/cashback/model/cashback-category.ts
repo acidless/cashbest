@@ -1,5 +1,4 @@
-import {db} from "@/lib/idb";
-import {Cashback} from "@/lib/types";
+import {getDb} from "@/lib/idb";
 
 export const cashbackCategory: {[key: number]: {title: string, icon: string}} = {
     0: {title: "Неизвестно", icon: "❓"},
@@ -20,13 +19,16 @@ export const cashbackCategory: {[key: number]: {title: string, icon: string}} = 
 }
 
 export async function addFavorite(category: number) {
+    const db = await getDb();
     await db.put("favorites", {category});
 }
 
 export async function removeFavorite(category: number) {
+    const db = await getDb();
     await db.delete("favorites", [category]);
 }
 
 export async function getAllFavorites(): Promise<number[]> {
+    const db = await getDb();
     return (await db.getAll("favorites")).map(c => c.category);
 }

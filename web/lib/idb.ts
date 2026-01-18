@@ -1,9 +1,22 @@
-import { openDB } from "idb";
+import { openDB, IDBPDatabase } from "idb";
 
-export const db = await openDB("cashback-db", 1, {
-    upgrade(db) {
-        db.createObjectStore("favorites", {
-            keyPath: ["category"]
+let dbPromise: Promise<IDBPDatabase> | null = null;
+
+export function getDb() {
+    if (typeof window === "undefined") {
+        throw new Error("IndexedDB is only available in browser");
+    }
+
+    if (!dbPromise) {
+        dbPromise = openDB("cashback-db", 1, {
+            upgrade(db) {
+                const store = db.createObjectStore("favorites", {
+                    keyPath: ["bank", "category"]
+                });
+                store.createIndex("by_bank", "bank");
+            }
         });
     }
-});
+
+    return dbPromise;
+}
