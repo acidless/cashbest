@@ -21,8 +21,9 @@ export const CashbackCard = ({cashback, lg, top}: PropsType) => {
                 </p>
             </div>
         </div>
-        <div>
+        <div className="flex flex-col items-end">
             <p className={`text-accent ${lg ? 'text-3xl' : 'text-2xl'} font-bold`}>{cashback.amount}%</p>
+            <time className="text-sm text-neutral-500">до {new Date(cashback.expires).toLocaleDateString()}</time>
         </div>
         {top && <p className="absolute text-3xl -top-5 -right-3 z-10">👑</p>}
     </div>

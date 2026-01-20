@@ -35,6 +35,7 @@ export const CashbackAccordion = ({cashbackCategory}: PropsType) => {
         <div className="relative">
             <SwipeForFavorite onLike={onLike} liked={isLiked}>
                 <motion.article onClick={() => setOpened(!isOpened)}
+                                className="cursor-pointer"
                                 exit={{ opacity: 0, height: 0, paddingTop: 0, paddingBottom: 0 }}
                                 transition={{ duration: 0.3 }}
                                 layout>

@@ -2,6 +2,9 @@ export type YandexCashbackCategory = {
     title: string;
     sale: {
         value: string;
+    };
+    timeline?: {
+        daysLeft: number;
     }
 }
 

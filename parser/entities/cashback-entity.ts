@@ -1,18 +1,16 @@
 import CashbackCategory from "./cashback-category";
 
 class CashbackEntity {
-    public constructor(private category: CashbackCategory, private amount: number, private bank: string) {}
+    private expires: Date;
 
-    public getCategory() {
-        return this.category;
-    }
-
-    public getAmount() {
-        return this.amount;
-    }
-
-    public getBank() {
-        return this.bank;
+    public constructor(private category: CashbackCategory, private amount: number, private bank: string, expires?: Date) {
+        if(expires) {
+            this.expires = expires;
+        } else {
+            this.expires = new Date();
+            this.expires.setMonth(this.expires.getMonth() + 1, 1);
+            this.expires.setHours(0, 0, 0, 0);
+        }
     }
 }
 

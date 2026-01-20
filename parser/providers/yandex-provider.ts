@@ -20,7 +20,7 @@ class YandexProvider extends Provider {
 
         await page.locator(selector)
             .filter({visible: true, has:page.locator('[class^="CashbackButton-module__block__"]')})
-            .click({ clickCount: 5, delay: 100 });
+            .click({ clickCount: 2, delay: 100, force: true });
 
         const response = await page.waitForResponse(response =>
             response.request().method() === 'POST' &&

@@ -13,7 +13,7 @@ class SberProvider extends Provider {
         const page = await browserContext.newPage();
         await page.goto('https://web7.online.sberbank.ru/main');
 
-        await page.waitForSelector('[href="/loyalty/main"]', {
+        await page.waitForSelector('[href="/app/loyalty/main"], [href="/loyalty/main"]', {
             timeout: 0
         });
 

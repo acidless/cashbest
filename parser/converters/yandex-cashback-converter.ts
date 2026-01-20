@@ -8,5 +8,12 @@ export default function yandexCashbackConverter(cashback: YandexCashbackCategory
     const amount = Number(cashback.sale.value);
     const title = langCodeToTitleConverter(cashback.title);
 
-    return new CashbackEntity(titleToCategoryConverter(title), amount, YandexProvider.getName());
+    let expires: Date | undefined = new Date();
+    if(cashback.timeline) {
+        expires.setDate(expires.getDate() + cashback.timeline.daysLeft);
+    } else {
+        expires = undefined;
+    }
+
+    return new CashbackEntity(titleToCategoryConverter(title), amount, YandexProvider.getName(), expires);
 }

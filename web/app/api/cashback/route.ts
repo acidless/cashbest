@@ -1,16 +1,11 @@
 import { NextResponse } from "next/server";
 import { neon } from "@neondatabase/serverless";
+import {Cashback} from "@/lib/types";
 
 const sql = neon(process.env.DATABASE_URL!);
 
-type CashbackItem = {
-    bank: string;
-    category: string;
-    amount: number;
-};
-
 export async function POST(req: Request) {
-    let items: CashbackItem[];
+    let items: Cashback[];
 
     try {
         items = await req.json();
@@ -36,11 +31,13 @@ export async function POST(req: Request) {
             INSERT INTO cashback (
               bank,
               category,
-              amount
+              amount,
+              expires
             ) VALUES (
               ${item.bank},
               ${item.category},
-              ${item.amount}
+              ${item.amount},
+              ${item.expires}
             )
           `;
         }
@@ -66,7 +63,8 @@ export async function GET() {
                     json_build_object(
                             'category', category,
                             'bank', bank,
-                            'amount', amount
+                            'amount', amount,
+                            'expires', expires
                     )
                         ORDER BY amount DESC
             ) AS cashback
